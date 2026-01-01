@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami/tabs/quran/sura.dart';
+import 'package:islami/tabs/quran/sura_details_screen.dart';
 
 class SuraItem extends StatelessWidget {
   Sura sura;
@@ -23,7 +24,7 @@ class SuraItem extends StatelessWidget {
           ),
           child: Text('${sura.suraNumber}', style: textTheme.titleSmall),
         ),
-
+    
         Column(
           crossAxisAlignment: .start,
           children: [
