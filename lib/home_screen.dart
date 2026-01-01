@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: .infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: MediaQuery.sizeOf(context).height * .15,
               fit: .fitWidth,
             ),
-            tabs[currentIndex],
+            Expanded(child: tabs[currentIndex]),
           ],
         ),
       ),
