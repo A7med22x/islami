@@ -55,9 +55,12 @@ class _QuranTabState extends State<QuranTab> {
               Sura sura = QuranService.suras[index];
               return InkWell(
                 onTap: () {
+                  QuranService.addToMostRecently(sura);
+
                   Navigator.of(
                     context,
                   ).pushNamed(SuraDetailsScreen.routeName, arguments: sura);
+                  setState(() {});
                 },
                 child: SuraItem(sura: sura),
               );

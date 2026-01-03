@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
+import 'package:islami/tabs/quran/sura.dart';
 import 'package:islami/tabs/quran/sura_details_screen.dart';
 
 class MostRecentlyItem extends StatelessWidget {
+  Sura sura;
+
+  MostRecentlyItem({required this.sura});
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     Size screenSize = MediaQuery.sizeOf(context);
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(SuraDetailsScreen.routeName);
+        Navigator.of(
+          context,
+        ).pushNamed(SuraDetailsScreen.routeName, arguments: sura);
       },
       child: Container(
         height: .infinity,
@@ -25,19 +32,19 @@ class MostRecentlyItem extends StatelessWidget {
               mainAxisAlignment: .spaceEvenly,
               children: [
                 Text(
-                  'Most Recently',
+                  sura.englishName,
                   style: textTheme.headlineSmall!.copyWith(
                     color: AppTheme.black,
                   ),
                 ),
                 Text(
-                  'Most Recently',
+                  sura.arabicName,
                   style: textTheme.headlineSmall!.copyWith(
                     color: AppTheme.black,
                   ),
                 ),
                 Text(
-                  'Most Recently',
+                  '${sura.ayatCount} Verses',
                   style: textTheme.titleSmall!.copyWith(color: AppTheme.black),
                 ),
               ],
