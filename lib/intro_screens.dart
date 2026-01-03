@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreens extends StatelessWidget {
   static const String routeName = '/intro';
@@ -76,7 +77,9 @@ class IntroScreens extends StatelessWidget {
                 'Finish',
                 style: textTheme.titleSmall!.copyWith(color: AppTheme.primary),
               ),
-              onDone: () {
+              onDone: () async{
+                SharedPreferences sharedPref = await SharedPreferences.getInstance();
+                sharedPref.setBool('hasSeenIntro', true);
                 Navigator.of(
                   context,
                 ).pushReplacementNamed(HomeScreen.routeName);
@@ -93,4 +96,4 @@ class IntroScreens extends StatelessWidget {
       ),
     );
   }
-}
+ }
