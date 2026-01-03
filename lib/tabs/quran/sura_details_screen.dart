@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/tabs/quran/quran_service.dart';
 import 'package:islami/tabs/quran/sura.dart';
+import 'package:islami/widgets/loading_indicator.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   static const routeName = '/sura details';
@@ -18,7 +19,9 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   Widget build(BuildContext context) {
     sura = ModalRoute.of(context)!.settings.arguments as Sura;
     TextTheme textTheme = Theme.of(context).textTheme;
-    loadSura();
+    if (ayat.isEmpty) {
+      loadSura();
+    }
     return Scaffold(
       appBar: AppBar(title: Text(sura.englishName)),
       body: Column(
@@ -41,16 +44,20 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              itemBuilder: (_, index) => Text(
-                ayat[index],
-                style: textTheme.titleLarge!.copyWith(color: AppTheme.primary),
-                textAlign: .center,
-              ),
-              separatorBuilder: (_, _) => SizedBox(height: 10),
-              itemCount: ayat.length,
-            ),
+            child: ayat.isEmpty
+                ? LoadingIndicator()
+                : ListView.separated(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    itemBuilder: (_, index) => Text(
+                      ayat[index],
+                      style: textTheme.titleLarge!.copyWith(
+                        color: AppTheme.primary,
+                      ),
+                      textAlign: .center,
+                    ),
+                    separatorBuilder: (_, _) => SizedBox(height: 10),
+                    itemCount: ayat.length,
+                  ),
           ),
           Image.asset('assets/images/footer.png'),
         ],

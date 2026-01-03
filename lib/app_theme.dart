@@ -19,6 +19,23 @@ class AppTheme {
       ),
     ),
     scaffoldBackgroundColor: black,
+    inputDecorationTheme: InputDecorationThemeData(
+      fillColor: black.withValues(alpha: 0.7),
+      filled: true,
+      hintStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: white.withValues(alpha: 0.6),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primary),
+        borderRadius: BorderRadius.circular(10)
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primary),
+        borderRadius: BorderRadius.circular(10)
+      )
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: primary,
       selectedItemColor: white,

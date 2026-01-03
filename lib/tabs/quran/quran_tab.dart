@@ -1,23 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/tabs/quran/quran_service.dart';
 import 'package:islami/tabs/quran/sura.dart';
 import 'package:islami/tabs/quran/sura_details_screen.dart';
 import 'package:islami/tabs/quran/sura_item.dart';
 
-class QuranTab extends StatelessWidget {
+class QuranTab extends StatefulWidget {
+  @override
+  State<QuranTab> createState() => _QuranTabState();
+}
+
+class _QuranTabState extends State<QuranTab> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.sizeOf(context).width;
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Column(
       crossAxisAlignment: .start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text(
-            'Suras List',
-            style: Theme.of(context).textTheme.titleMedium,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: TextField(
+            style: textTheme.titleMedium,
+            decoration: InputDecoration(
+              hintText: 'Sura Name',
+              prefixIcon: SvgPicture.asset(
+                'assets/icons/quran.svg',
+                colorFilter: ColorFilter.mode(
+                  AppTheme.primary,
+                  BlendMode.srcIn,
+                ),
+                width: 28,
+                height: 28,
+                fit: .scaleDown,
+              ),
+            ),
+            onChanged: (query) {
+              QuranService.searchSura(query);
+              setState(() {});
+            },
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Text('Suras List', style: textTheme.titleMedium),
         ),
         Expanded(
           child: ListView.separated(
