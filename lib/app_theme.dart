@@ -43,6 +43,7 @@ class AppTheme {
       showUnselectedLabels: false,
     ),
     textTheme: TextTheme(
+      displaySmall: TextStyle(fontSize: 36, fontWeight: .bold, color: white),
       headlineSmall: TextStyle(fontSize: 24, fontWeight: .bold, color: white),
       titleLarge: TextStyle(fontSize: 20, fontWeight: .bold, color: white),
       titleMedium: TextStyle(fontSize: 16, fontWeight: .bold, color: white),
