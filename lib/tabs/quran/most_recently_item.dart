@@ -19,8 +19,9 @@ class MostRecentlyItem extends StatelessWidget {
         ).pushNamed(SuraDetailsScreen.routeName, arguments: sura);
       },
       child: Container(
+        padding: EdgeInsets.all(8),
         height: .infinity,
-        width: screenSize.width * 0.7,
+        width: screenSize.width * 0.75,
         decoration: BoxDecoration(
           color: AppTheme.primary,
           borderRadius: BorderRadius.circular(20),
@@ -30,6 +31,7 @@ class MostRecentlyItem extends StatelessWidget {
           children: [
             Column(
               mainAxisAlignment: .spaceEvenly,
+              crossAxisAlignment: .start,
               children: [
                 Text(
                   sura.englishName,

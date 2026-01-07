@@ -1,6 +1,17 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
-class SebhaTab extends StatelessWidget {
+class SebhaTab extends StatefulWidget {
+  @override
+  State<SebhaTab> createState() => _SebhaTabState();
+}
+
+class _SebhaTabState extends State<SebhaTab> {
+  List<String> tasbeah = ['سبحان الله', 'لا إله إلا الله', 'أستغفر الله'];
+  int counter = 1;
+  int index = 0;
+  double angel = 0.0;
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -18,26 +29,45 @@ class SebhaTab extends StatelessWidget {
             ),
           ),
           Image.asset('assets/images/sebha_body.png'),
-          Container(
-            width: .infinity,
-            height: screenHeight * .4,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/sebhabody1.png'),
-                fit: .fill,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: .center,
+          InkWell(
+            onTap: onIncreaseCounter,
+            child: Stack(
               children: [
-                Text('سبحان الله', style: textTheme.displaySmall),
-                SizedBox(height: 10),
-                Text('30', style: textTheme.displaySmall),
+                Transform.rotate(
+                  angle: angel,
+                  child: Image.asset('assets/images/sebhabody1.png'),
+                ),
+                Center(
+                  child: SizedBox(
+                    height: screenHeight * .4,
+                    child: Column(
+                      mainAxisAlignment: .center,
+                      children: [
+                        Text(tasbeah[index], style: textTheme.displaySmall),
+                        SizedBox(height: 10),
+                        Text('$counter', style: textTheme.displaySmall),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  void onIncreaseCounter() {
+    counter++;
+    angel++;
+    if (counter % 33 == 0) {
+      index++;
+      angel = 0;
+      if (index >= tasbeah.length) {
+        index = 0;
+      }
+    }
+    setState(() {});
   }
 }
