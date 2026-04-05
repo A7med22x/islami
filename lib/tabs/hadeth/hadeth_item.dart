@@ -6,8 +6,8 @@ import 'package:islami/tabs/hadeth/hadeth_details_screen.dart';
 import 'package:islami/widgets/loading_indicator.dart';
 
 class HadethItem extends StatefulWidget {
-  int index;
-  HadethItem({required this.index});
+  final int index;
+  const HadethItem({super.key, required this.index});
 
   @override
   State<HadethItem> createState() => _HadethItemState();

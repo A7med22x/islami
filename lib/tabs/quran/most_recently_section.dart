@@ -3,6 +3,8 @@ import 'package:islami/tabs/quran/most_recently_item.dart';
 import 'package:islami/tabs/quran/quran_service.dart';
 
 class MostRecentlySection extends StatelessWidget {
+  const MostRecentlySection({super.key});
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;

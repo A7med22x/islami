@@ -7,6 +7,8 @@ import 'package:islami/widgets/loading_indicator.dart';
 class SuraDetailsScreen extends StatefulWidget {
   static const routeName = '/sura details';
 
+  const SuraDetailsScreen({super.key});
+
   @override
   State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
 }

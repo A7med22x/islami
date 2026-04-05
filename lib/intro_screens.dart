@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreens extends StatelessWidget {
   static const String routeName = '/intro';
+
+  const IntroScreens({super.key});
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -78,11 +80,11 @@ class IntroScreens extends StatelessWidget {
                 style: textTheme.titleSmall!.copyWith(color: AppTheme.primary),
               ),
               onDone: () async{
-                SharedPreferences sharedPref = await SharedPreferences.getInstance();
-                sharedPref.setBool('hasSeenIntro', true);
                 Navigator.of(
                   context,
                 ).pushReplacementNamed(HomeScreen.routeName);
+                SharedPreferences sharedPref = await SharedPreferences.getInstance();
+                sharedPref.setBool('hasSeenIntro', true); 
               },
               dotsDecorator: DotsDecorator(
                 activeSize: Size(18, 7),

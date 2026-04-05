@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:islami/tabs/quran/sura.dart';
-import 'package:islami/tabs/quran/sura_details_screen.dart';
 
 class SuraItem extends StatelessWidget {
-  Sura sura;
+  final Sura sura;
 
-  SuraItem({required this.sura});
+  const SuraItem({super.key, required this.sura});
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;

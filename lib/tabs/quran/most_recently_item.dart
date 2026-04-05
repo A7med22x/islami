@@ -4,9 +4,9 @@ import 'package:islami/tabs/quran/sura.dart';
 import 'package:islami/tabs/quran/sura_details_screen.dart';
 
 class MostRecentlyItem extends StatelessWidget {
-  Sura sura;
+  final Sura sura;
 
-  MostRecentlyItem({required this.sura});
+  const MostRecentlyItem({super.key, required this.sura});
 
   @override
   Widget build(BuildContext context) {

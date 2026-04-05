@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
 
 class LoadingIndicator extends StatelessWidget {
-  Color? color;
+  final Color? color;
 
-  LoadingIndicator({this.color});
+  const LoadingIndicator({super.key, this.color});
   
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,8 @@ import 'package:islami/tabs/hadeth/hadeth.dart';
 class HadethDetailsScreen extends StatefulWidget {
   static const routeName = '/hadeth details';
 
+  const HadethDetailsScreen({super.key});
+
   @override
   State<HadethDetailsScreen> createState() => _HadethDetailsScreenState();
 }

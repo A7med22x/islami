@@ -8,6 +8,8 @@ import 'package:islami/tabs/quran/sura_details_screen.dart';
 import 'package:islami/tabs/quran/sura_item.dart';
 
 class QuranTab extends StatefulWidget {
+  const QuranTab({super.key});
+
   @override
   State<QuranTab> createState() => _QuranTabState();
 }

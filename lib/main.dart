@@ -11,13 +11,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await QuranService.getMostRecentlySuras();
   SharedPreferences sharedPref = await SharedPreferences.getInstance();
-  final hasSeenIntro= await sharedPref.getBool('hasSeenIntro') ?? false;
+  final hasSeenIntro= sharedPref.getBool('hasSeenIntro') ?? false;
     runApp(IslmiApp(hasSeenIntro: hasSeenIntro,));
 }
 
 class IslmiApp extends StatelessWidget {
   final bool hasSeenIntro;
-  const IslmiApp({required this.hasSeenIntro});
+  const IslmiApp({super.key, required this.hasSeenIntro});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
