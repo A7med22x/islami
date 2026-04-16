@@ -79,12 +79,13 @@ class IntroScreens extends StatelessWidget {
                 'Finish',
                 style: textTheme.titleSmall!.copyWith(color: AppTheme.primary),
               ),
-              onDone: () async{
+              onDone: () async {
                 Navigator.of(
                   context,
                 ).pushReplacementNamed(HomeScreen.routeName);
-                SharedPreferences sharedPref = await SharedPreferences.getInstance();
-                sharedPref.setBool('hasSeenIntro', true); 
+                SharedPreferences sharedPref =
+                    await SharedPreferences.getInstance();
+                sharedPref.setBool('hasSeenIntro', true);
               },
               dotsDecorator: DotsDecorator(
                 activeSize: Size(18, 7),
@@ -98,4 +99,4 @@ class IntroScreens extends StatelessWidget {
       ),
     );
   }
- }
+}

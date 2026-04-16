@@ -29,12 +29,12 @@ class AppTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: primary),
-        borderRadius: BorderRadius.circular(10)
+        borderRadius: BorderRadius.circular(10),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: primary),
-        borderRadius: BorderRadius.circular(10)
-      )
+        borderRadius: BorderRadius.circular(10),
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: primary,

@@ -5,7 +5,7 @@ import 'package:islami/app_theme.dart';
 class NavBarSelectedIcons extends StatelessWidget {
   final String imageName;
 
-  const NavBarSelectedIcons({super.key,required this.imageName});
+  const NavBarSelectedIcons({super.key, required this.imageName});
 
   @override
   Widget build(BuildContext context) {

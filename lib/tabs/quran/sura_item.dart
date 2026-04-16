@@ -23,7 +23,7 @@ class SuraItem extends StatelessWidget {
           ),
           child: Text('${sura.suraNumber}', style: textTheme.titleSmall),
         ),
-    
+
         Column(
           crossAxisAlignment: .start,
           children: [

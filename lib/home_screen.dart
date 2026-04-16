@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:islami/nav_bar_unselected_icons.dart';
-import 'package:islami/nav_bar_selected_icons.dart';
+import 'package:islami/widgets/nav_bar_unselected_icons.dart';
+import 'package:islami/widgets/nav_bar_selected_icons.dart';
 import 'package:islami/tabs/hadeth/hadeth_tab.dart';
 import 'package:islami/tabs/quran/quran_tab.dart';
 import 'package:islami/tabs/radio/radio_tab.dart';

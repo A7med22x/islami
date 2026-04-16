@@ -382,15 +382,15 @@ class QuranService {
 
   static Future<void> getMostRecentlySuras() async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    List<String>? mostRecentlyIndexes = sharedPref.getStringList('mostRecentlyIndexes');
-    if (mostRecentlyIndexes ==  null) return;
-    mostRecently = mostRecentlyIndexes
-    .map((indexString){
+    List<String>? mostRecentlyIndexes = sharedPref.getStringList(
+      'mostRecentlyIndexes',
+    );
+    if (mostRecentlyIndexes == null) return;
+    mostRecently = mostRecentlyIndexes.map((indexString) {
       int index = int.parse(indexString);
       Sura sura = getSuraFromIndex(index);
       return sura;
-    })
-    .toList();
+    }).toList();
   }
 
   static Future<void> addToMostRecently(Sura sura) async {
