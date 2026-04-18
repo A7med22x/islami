@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:islami/models/reciters_response/reciters_moshaf.dart';
 
 class RadioProvider extends ChangeNotifier {
   final _player = AudioPlayer();
@@ -31,5 +32,16 @@ class RadioProvider extends ChangeNotifier {
     currentVolume = volume;
     await _player.setVolume(volume);
     notifyListeners();
+  }
+
+  RecitersMoshaf? selectedReciter;
+
+  void setSelectedReciter(RecitersMoshaf? reciter) {
+    selectedReciter = reciter;
+    notifyListeners();
+  }
+
+  String get surahCode {
+    return selectedReciter?.code.toString().padLeft(3, '0') ?? "002";
   }
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:islami/api/api_manager.dart';
 import 'package:islami/app_theme.dart';
+import 'package:islami/provider/radio_provider.dart';
 import 'package:islami/tabs/radio/radio_item.dart';
+import 'package:islami/tabs/radio/reciter_item.dart';
 import 'package:islami/widgets/loading_indicator.dart';
+import 'package:provider/provider.dart';
 
 class RadioTab extends StatelessWidget {
   const RadioTab({super.key});
@@ -60,23 +63,29 @@ class RadioTab extends StatelessWidget {
                       }
                     },
                   ),
-                  FutureBuilder(
-                    future: ApiManager().getReciterData(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return LoadingIndicator();
-                      } else if (snapshot.hasError) {
-                        return Center(child: Text('something went wrong'));
-                      } else {
-                        final reciters = snapshot.data!;
-                        return ListView.builder(
-                          itemBuilder: (context, index) => RadioItem(
-                            name: reciters[index].name,
-                            url: '${reciters[index].moshaf[0].server}002.mp3',
-                          ),
-                          itemCount: reciters.length,
-                        );
-                      }
+                  Consumer<RadioProvider>(
+                    builder: (context, provider, child) {
+                      return FutureBuilder(
+                        future: ApiManager().getReciterData(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return LoadingIndicator();
+                          } else if (snapshot.hasError) {
+                            return Center(child: Text('something went wrong'));
+                          } else {
+                            final reciters = snapshot.data!;
+                            return ListView.builder(
+                              itemBuilder: (context, index) => ReciterItem(
+                                name: reciters[index].name,
+                                url:
+                                    '${reciters[index].moshaf[0].server}${provider.surahCode}.mp3',
+                              ),
+                              itemCount: reciters.length,
+                            );
+                          }
+                        },
+                      );
                     },
                   ),
                 ],
