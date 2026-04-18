@@ -25,7 +25,9 @@ class _RadioItemState extends State<RadioItem> {
           margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: (provider.isPlaying && provider.currentPlayingURL == widget.url)
+              image:
+                  (provider.isPlaying &&
+                      provider.currentPlayingURL == widget.url)
                   ? AssetImage('assets/images/sound_wave.png')
                   : AssetImage('assets/images/mosque.png'),
               fit: BoxFit.cover,

@@ -6,6 +6,7 @@ import 'package:islami/provider/radio_provider.dart';
 import 'package:islami/tabs/hadeth/hadeth_details_screen.dart';
 import 'package:islami/tabs/quran/quran_service.dart';
 import 'package:islami/tabs/quran/sura_details_screen.dart';
+import 'package:islami/tabs/time/azkar_details_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +35,7 @@ class IslmiApp extends StatelessWidget {
         SuraDetailsScreen.routeName: (_) => SuraDetailsScreen(),
         IntroScreens.routeName: (_) => IntroScreens(),
         HadethDetailsScreen.routeName: (_) => HadethDetailsScreen(),
+        AzkarDetailsScreen.routeName: (_) => AzkarDetailsScreen(),
       },
       initialRoute: hasSeenIntro
           ? HomeScreen.routeName

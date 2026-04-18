@@ -4,6 +4,8 @@ class AppTheme {
   static const Color primary = Color(0xffE2BE7F);
   static const Color black = Color(0xff202020);
   static const Color white = Color(0xffFFFFFF);
+  static const Color lightBrown = Color(0xff856B3F);
+  static const Color brown = Color(0xffB19768);
 
   static ThemeData lightTheme = ThemeData();
   static ThemeData darkTheme = ThemeData(
@@ -44,6 +46,7 @@ class AppTheme {
     ),
     textTheme: TextTheme(
       displaySmall: TextStyle(fontSize: 36, fontWeight: .bold, color: white),
+      headlineLarge: TextStyle(fontSize: 32, fontWeight: .bold, color: white),
       headlineSmall: TextStyle(fontSize: 24, fontWeight: .bold, color: white),
       titleLarge: TextStyle(fontSize: 20, fontWeight: .bold, color: white),
       titleMedium: TextStyle(fontSize: 16, fontWeight: .bold, color: white),

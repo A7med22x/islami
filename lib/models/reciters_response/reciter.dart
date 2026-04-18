@@ -7,7 +7,13 @@ class Reciter {
   DateTime date;
   List<Moshaf> moshaf;
 
-  Reciter({required this.id, required this.name, required this.letter, required this.date, required this.moshaf});
+  Reciter({
+    required this.id,
+    required this.name,
+    required this.letter,
+    required this.date,
+    required this.moshaf,
+  });
 
   factory Reciter.fromJson(Map<String, dynamic> json) => Reciter(
     id: json['id'] as int,
