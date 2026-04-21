@@ -11,7 +11,7 @@ import 'package:islami/models/reciters_response/reciters_response.dart';
 class ApiManager {
   Future<List<Radio>> getRadioData() async {
     try {
-      Uri uri = Uri.parse('https://mp3quran.net/api/v3/radios?language=ar');
+      Uri uri = Uri.parse('http://mp3quran.net/api/v3/radios?language=ar');
       final response = await http.get(uri);
       Map<String, dynamic> json = jsonDecode(response.body);
       final radioResponse = RadioResponse.fromJson(json);
@@ -24,7 +24,7 @@ class ApiManager {
   Future<List<Reciter>> getReciterData() async {
     try {
       Uri uri = Uri.parse(
-        'https://www.mp3quran.net/api/v3/reciters?language=ar',
+        'http://www.mp3quran.net/api/v3/reciters?language=ar',
       );
       final response = await http.get(uri);
       Map<String, dynamic> json = jsonDecode(response.body);
@@ -39,7 +39,7 @@ class ApiManager {
     try {
       final date = DateFormat('dd-MM-yyyy').format(DateTime.now());
       Uri uri = Uri.parse(
-        'https://api.aladhan.com/v1/timingsByCity/$date?city=cairo&country=egypt',
+        'http://api.aladhan.com/v1/timingsByCity/$date?city=cairo&country=egypt',
       );
       final response = await http.get(uri);
       Map<String, dynamic> json = jsonDecode(response.body);
