@@ -1,0 +1,42 @@
+import 'designation.dart';
+import 'month.dart';
+import 'weekday.dart';
+
+class Gregorian {
+  String? date;
+  String? format;
+  String? day;
+  Weekday? weekday;
+  Month? month;
+  String? year;
+  Designation? designation;
+  bool? lunarSighting;
+
+  Gregorian({
+    this.date,
+    this.format,
+    this.day,
+    this.weekday,
+    this.month,
+    this.year,
+    this.designation,
+    this.lunarSighting,
+  });
+
+  factory Gregorian.fromJson(Map<String, dynamic> json) => Gregorian(
+    date: json['date'] as String?,
+    format: json['format'] as String?,
+    day: json['day'] as String?,
+    weekday: json['weekday'] == null
+        ? null
+        : Weekday.fromJson(json['weekday'] as Map<String, dynamic>),
+    month: json['month'] == null
+        ? null
+        : Month.fromJson(json['month'] as Map<String, dynamic>),
+    year: json['year'] as String?,
+    designation: json['designation'] == null
+        ? null
+        : Designation.fromJson(json['designation'] as Map<String, dynamic>),
+    lunarSighting: json['lunarSighting'] as bool?,
+  );
+}
