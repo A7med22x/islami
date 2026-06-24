@@ -17,7 +17,6 @@ class QuranTab extends StatefulWidget {
 class _QuranTabState extends State<QuranTab> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.sizeOf(context).width;
     TextTheme textTheme = Theme.of(context).textTheme;
     return Column(
       crossAxisAlignment: .start,
@@ -48,7 +47,7 @@ class _QuranTabState extends State<QuranTab> {
         MostRecentlySection(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text('Suras List', style: textTheme.titleMedium),
+          child: Text('Suras List', style: textTheme.titleLarge),
         ),
         Expanded(
           child: ListView.separated(
@@ -67,11 +66,8 @@ class _QuranTabState extends State<QuranTab> {
                 child: SuraItem(sura: sura),
               );
             },
-            separatorBuilder: (_, _) => Divider(
-              color: AppTheme.white,
-              indent: screenWidth * .1,
-              endIndent: screenWidth * .1,
-            ),
+            separatorBuilder: (_, _) =>
+                Divider(color: AppTheme.primary, indent: 0, endIndent: 0),
             itemCount: QuranService.suras.length,
           ),
         ),

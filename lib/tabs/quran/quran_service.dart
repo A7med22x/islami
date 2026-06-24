@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class QuranService {
   static List<String> arabicSuraName = [
-    'الفاتحه',
+    'الفاتحة',
     'البقرة',
     'آل عمران',
     'النساء',
@@ -351,7 +351,124 @@ class QuranService {
     5,
     6,
   ];
+  static List<bool> makkia = [
+    true, // الفاتحة
+    false, // البقرة
+    false, // آل عمران
+    false, // النساء
+    false, // المائدة
+    true, // الأنعام
+    true, // الأعراف
+    false, // الأنفال
+    false, // التوبة
+    true, // يونس
+    true, // هود
+    true, // يوسف
+    false, // الرعد
+    true, // إبراهيم
+    true, // الحجر
+    true, // النحل
+    true, // الإسراء
+    true, // الكهف
+    true, // مريم
+    true, // طه
+    true, // الأنبياء
+    false, // الحج
+    true, // المؤمنون
+    false, // النور
+    true, // الفرقان
+    true, // الشعراء
+    true, // النمل
+    true, // القصص
+    true, // العنكبوت
+    true, // الروم
+    true, // لقمان
+    true, // السجدة
+    false, // الأحزاب
+    true, // سبأ
+    true, // فاطر
+    true, // يس
+    true, // الصافات
+    true, // ص
+    true, // الزمر
+    true, // غافر
+    true, // فصلت
+    true, // الشورى
+    true, // الزخرف
+    true, // الدخان
+    true, // الجاثية
+    true, // الأحقاف
+    false, // محمد
+    false, // الفتح
+    false, // الحجرات
+    true, // ق
+    true, // الذاريات
+    true, // الطور
+    true, // النجم
+    true, // القمر
+    false, // الرحمن
+    true, // الواقعة
+    false, // الحديد
+    false, // المجادلة
+    false, // الحشر
+    false, // الممتحنة
+    false, // الصف
+    false, // الجمعة
+    false, // المنافقون
+    false, // التغابن
+    false, // الطلاق
+    false, // التحريم
+    true, // الملك
+    true, // القلم
+    true, // الحاقة
+    true, // المعارج
+    true, // نوح
+    true, // الجن
+    true, // المزمل
+    true, // المدثر
+    true, // القيامة
+    false, // الإنسان
+    true, // المرسلات
+    true, // النبأ
+    true, // النازعات
+    true, // عبس
+    true, // التكوير
+    true, // الإنفطار
+    true, // المطففين
+    true, // الإنشقاق
+    true, // البروج
+    true, // الطارق
+    true, // الأعلى
+    true, // الغاشية
+    true, // الفجر
+    true, // البلد
+    true, // الشمس
+    true, // الليل
+    true, // الضحى
+    true, // الشرح
+    true, // التين
+    true, // العلق
+    true, // القدر
+    false, // البينة
+    false, // الزلزلة
+    true, // العاديات
+    true, // القارعة
+    true, // التكاثر
+    true, // العصر
+    true, // الهمزة
+    true, // الفيل
+    true, // قريش
+    true, // الماعون
+    true, // الكوثر
+    true, // الكافرون
+    false, // النصر
+    true, // المسد
+    true, // الإخلاص
+    true, // الفلق
+    true, // الناس
+  ];
 
+  
   static List<Sura> suras = List.generate(
     114,
     (index) => getSuraFromIndex(index),
@@ -364,6 +481,7 @@ class QuranService {
     arabicName: arabicSuraName[index],
     ayatCount: ayatCounts[index],
     suraNumber: index + 1,
+    makkia: makkia[index],
   );
 
   static Future<String> loadSoraFile(int suraNumber) =>
@@ -394,11 +512,16 @@ class QuranService {
   }
 
   static Future<void> addToMostRecently(Sura sura) async {
-    bool alreadyExist = mostRecently.any(
-      (mostRecentlysura) => mostRecentlysura.suraNumber == sura.suraNumber,
+    mostRecently.removeWhere(
+      (mostRecentSura) => mostRecentSura.suraNumber == sura.suraNumber,
     );
-    if (alreadyExist) return;
-    mostRecently.add(sura);
+
+    mostRecently.insert(0, sura);
+
+    if (mostRecently.length > 10) {
+      mostRecently.removeLast();
+    }
+
     List<String> mostRecentlyIndexes = mostRecently
         .map((sura) => (sura.suraNumber - 1).toString())
         .toList();

@@ -45,6 +45,12 @@ class AppTheme {
       showUnselectedLabels: false,
     ),
     textTheme: TextTheme(
+      bodyLarge: TextStyle(
+        fontFamily: 'QPC_Hafs',
+        fontSize: 32,
+        color: primary,
+        height: 1.5,
+      ),
       displaySmall: TextStyle(fontSize: 36, fontWeight: .bold, color: white),
       headlineLarge: TextStyle(fontSize: 32, fontWeight: .bold, color: white),
       headlineSmall: TextStyle(fontSize: 24, fontWeight: .bold, color: white),

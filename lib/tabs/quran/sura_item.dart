@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:islami/app_theme.dart';
 import 'package:islami/tabs/quran/sura.dart';
+import 'package:islami/utils/arabic_utils.dart';
 
 class SuraItem extends StatelessWidget {
   final Sura sura;
@@ -12,27 +14,63 @@ class SuraItem extends StatelessWidget {
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.only(right: 24),
-          width: 52,
-          height: 52,
+          margin: const EdgeInsets.only(right: 8),
+          width: 40,
+          height: 40,
           alignment: .center,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/sura_number.png'),
             ),
           ),
-          child: Text('${sura.suraNumber}', style: textTheme.titleSmall),
+          child: Text(
+            '${sura.suraNumber}',
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: sura.suraNumber > 99 ? 10 : 12),
+          ),
         ),
-
-        Column(
-          crossAxisAlignment: .start,
-          children: [
-            Text(sura.englishName, style: textTheme.titleLarge),
-            Text('${sura.ayatCount} Verses', style: textTheme.titleSmall),
-          ],
+        Expanded(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  Text(sura.englishName, style: textTheme.titleLarge),
+                  Text(
+                    sura.arabicName,
+                    style: textTheme.bodyLarge!.copyWith(color: AppTheme.white),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  Text('${sura.ayatCount} Verses', style: textTheme.titleSmall),
+                  Text(
+                    sura.makkia ? "مكية" : "مدنية",
+                    style: textTheme.bodyLarge!.copyWith(
+                      color: AppTheme.white,
+                      fontSize: 20,
+                      height: 1,
+                    ),
+                  ),
+                  Text(
+                    '${ArabicUtils.numberToArabic(sura.ayatCount)} ${sura.ayatCount < 10 ? "آيات" : "آية"}',
+                    style: textTheme.titleSmall,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-        Spacer(),
-        Text(sura.arabicName, style: textTheme.titleLarge),
+        const SizedBox(width: 8),
+        Text(
+          ArabicUtils.numberToArabic(sura.suraNumber),
+          style: textTheme.bodyLarge!.copyWith(
+            color: AppTheme.white,
+            fontWeight: .bold,
+            height: 1,
+          ),
+        ),
       ],
     );
   }

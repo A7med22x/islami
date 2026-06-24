@@ -22,7 +22,7 @@ class MostRecentlySection extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: .horizontal,
                 itemBuilder: (_, index) => MostRecentlyItem(
-                  sura: QuranService.mostRecently.reversed.toList()[index],
+                  sura: QuranService.mostRecently[index],
                 ),
                 separatorBuilder: (_, _) => SizedBox(width: 10),
                 itemCount: QuranService.mostRecently.length,

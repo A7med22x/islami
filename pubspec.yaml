@@ -40,3 +40,8 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/texts/
+  
+  fonts:
+    - family: QPC_Hafs
+      fonts:
+        - asset: assets/fonts/QPC_Hafs.ttf  
