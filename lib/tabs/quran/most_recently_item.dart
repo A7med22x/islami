@@ -34,15 +34,17 @@ class MostRecentlyItem extends StatelessWidget {
               crossAxisAlignment: .start,
               children: [
                 Text(
-                  sura.englishName,
-                  style: textTheme.headlineSmall!.copyWith(
+                  sura.arabicName,
+                  style: textTheme.bodyLarge!.copyWith(
                     color: AppTheme.black,
+                    height: 1
                   ),
                 ),
                 Text(
-                  sura.arabicName,
+                  sura.englishName,
                   style: textTheme.headlineSmall!.copyWith(
                     color: AppTheme.black,
+                    fontSize: 20
                   ),
                 ),
                 Text(

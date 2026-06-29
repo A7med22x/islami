@@ -51,6 +51,12 @@ class AppTheme {
         color: primary,
         height: 1.5,
       ),
+      bodyMedium: TextStyle(
+        fontFamily: 'Cairo',
+        fontSize: 16,
+        fontWeight: .w500,
+        color: Colors.white,
+      ),
       displaySmall: TextStyle(fontSize: 36, fontWeight: .bold, color: white),
       headlineLarge: TextStyle(fontSize: 32, fontWeight: .bold, color: white),
       headlineSmall: TextStyle(fontSize: 24, fontWeight: .bold, color: white),

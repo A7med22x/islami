@@ -34,7 +34,7 @@ class SuraItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: .spaceBetween,
                 children: [
-                  Text(sura.englishName, style: textTheme.titleLarge),
+                  Text(sura.englishName, style: textTheme.titleMedium),
                   Text(
                     sura.arabicName,
                     style: textTheme.bodyLarge!.copyWith(color: AppTheme.white),

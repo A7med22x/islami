@@ -22,61 +22,128 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: AutoSizeText(azkarName, maxLines: 1)),
-      body: Column(
-        children: [
-          FutureBuilder(
-            future: AzkarModel.loadAzkarData(azkarName),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return LoadingIndicator();
-              } else if (snapshot.hasError) {
-                return Center(child: Text('something went wrong'));
-              } else {
-                final azkar = snapshot.data!;
-                return Expanded(
-                  child: ListView.builder(
-                    itemBuilder: (_, index) => Container(
-                      padding: const EdgeInsets.all(16),
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
+      body: FutureBuilder(
+        future: AzkarModel.loadAzkarData(azkarName),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return LoadingIndicator();
+          }
+
+          if (snapshot.hasError) {
+            return const Center(child: Text('something went wrong'));
+          }
+
+          final azkar = snapshot.data!;
+
+          return ListView.builder(
+            itemCount: azkar.length,
+            itemBuilder: (_, index) {
+              if (azkar[index].count!.isNotEmpty) {
+                int count = int.tryParse(azkar[index].count!) ?? 0;
+
+                return Container(
+                  padding: const EdgeInsets.all(16),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: AppTheme.black,
+                    border: Border.all(color: AppTheme.primary, width: 2),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        azkar[index].content!,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        textAlign: TextAlign.center,
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppTheme.black,
-                        border: Border.all(color: AppTheme.primary, width: 2),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            azkar[index].content!,
-                            style: Theme.of(context).textTheme.titleMedium,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'عدد المرات: ${azkar[index].count}',
-                            style: Theme.of(context).textTheme.titleLarge!
-                                .copyWith(color: AppTheme.primary),
-                            textAlign: TextAlign.center,
-                          ),
-                          if (azkar[index].description!.isNotEmpty)
-                            Text(
-                              azkar[index].description!,
-                              style: Theme.of(context).textTheme.titleSmall!
-                                  .copyWith(color: AppTheme.brown),
-                              textAlign: TextAlign.center,
+
+                      const SizedBox(height: 10),
+
+                      if (azkar[index].description!.isNotEmpty)
+                        Text(
+                          azkar[index].description!,
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(color: AppTheme.brown, fontSize: 12),
+                          textAlign: TextAlign.center,
+                        ),
+                      const SizedBox(height: 10),
+                      if (azkar[index].count!.isNotEmpty)
+                      StatefulBuilder(
+                        builder: (context, setItemState) {
+                          return InkWell(
+                            onTap: () {
+                              setItemState(() {
+                                if (count > 0) {
+                                  count--;
+                                }
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 4,
+                              ),
+
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1,
+                                  color: AppTheme.primary,
+                                ),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      setItemState(() {
+                                        count =
+                                            int.tryParse(azkar[index].count!) ??
+                                            0;
+                                      });
+                                    },
+                                    child: const Icon(
+                                      Icons.refresh,
+                                      color: AppTheme.primary,
+                                      size: 24,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 32),
+                                  Text(
+                                    '$count',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(color: AppTheme.primary),
+                                  ),
+                                ],
+                              ),
                             ),
-                        ],
+                          );
+                        },
                       ),
-                    ),
-                    itemCount: azkar.length,
+                    ],
                   ),
                 );
               }
+
+              return Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppTheme.black,
+                  border: Border.all(color: AppTheme.primary, width: 2),
+                ),
+                child: Text(azkar[index].content!, textAlign: TextAlign.center),
+              );
             },
-          ),
-        ],
+          );
+        },
       ),
     );
   }
