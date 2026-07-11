@@ -20,14 +20,13 @@ class _RadioItemState extends State<RadioItem> {
   Widget build(BuildContext context) {
     return Consumer<RadioProvider>(
       builder: (context, provider, child) {
+        final isActive = provider.currentPlayingURL == widget.url;
         return Container(
           padding: const EdgeInsets.all(8),
           margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image:
-                  (provider.isPlaying &&
-                      provider.currentPlayingURL == widget.url)
+              image: isActive
                   ? AssetImage('assets/images/sound_wave.png')
                   : AssetImage('assets/images/mosque.png'),
               fit: BoxFit.cover,
@@ -51,11 +50,10 @@ class _RadioItemState extends State<RadioItem> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      provider.play(widget.url);
+                      provider.playRadio(name: widget.name, url: widget.url);
                     },
                     icon: Icon(
-                      (provider.isPlaying &&
-                              provider.currentPlayingURL == widget.url)
+                      isActive && provider.isPlaying
                           ? Icons.pause
                           : Icons.play_arrow_rounded,
                       size: 50,
@@ -63,13 +61,8 @@ class _RadioItemState extends State<RadioItem> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {
-                      if (provider.isPlaying &&
-                          provider.currentPlayingURL == widget.url) {
-                        provider.stop();
-                      }
-                    },
-                    icon: Icon(
+                    onPressed: isActive ? provider.stop : null,
+                    icon: const Icon(
                       Icons.stop_rounded,
                       size: 40,
                       color: AppTheme.black,
@@ -77,11 +70,14 @@ class _RadioItemState extends State<RadioItem> {
                   ),
                   IconButton(
                     onPressed: () {
-                      isVolumeUp = !isVolumeUp;
-                      provider.setVolume(isVolumeUp ? 2 : 0);
+                      setState(() {
+                        isVolumeUp = !isVolumeUp;
+                      });
+
+                      provider.setVolume(isVolumeUp ? 1.0 : 0.0);
                     },
                     icon: Icon(
-                      isVolumeUp ? Icons.volume_up : Icons.volume_mute,
+                      isVolumeUp ? Icons.volume_up : Icons.volume_off,
                       size: 40,
                       color: AppTheme.black,
                     ),

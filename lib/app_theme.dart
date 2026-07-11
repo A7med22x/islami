@@ -44,6 +44,14 @@ class AppTheme {
       type: .fixed,
       showUnselectedLabels: false,
     ),
+    sliderTheme: SliderThemeData(
+      trackHeight: 4,
+      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+      overlayShape: const RoundSliderOverlayShape(overlayRadius: 14),
+      activeTrackColor: AppTheme.primary,
+      inactiveTrackColor: AppTheme.primary.withValues(alpha: 0.3),
+      thumbColor: AppTheme.primary,
+    ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
         fontFamily: 'QPC_Hafs',

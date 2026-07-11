@@ -19,7 +19,6 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     azkarName = ModalRoute.of(context)!.settings.arguments as String;
-
     return Scaffold(
       appBar: AppBar(title: AutoSizeText(azkarName, maxLines: 1)),
       body: FutureBuilder(
@@ -28,49 +27,41 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return LoadingIndicator();
           }
-
           if (snapshot.hasError) {
             return const Center(child: Text('something went wrong'));
           }
-
           final azkar = snapshot.data!;
-
           return ListView.builder(
             itemCount: azkar.length,
             itemBuilder: (_, index) {
-              if (azkar[index].count!.isNotEmpty) {
-                int count = int.tryParse(azkar[index].count!) ?? 0;
-
-                return Container(
-                  padding: const EdgeInsets.all(16),
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppTheme.black,
-                    border: Border.all(color: AppTheme.primary, width: 2),
-                  ),
-                  child: Column(
-                    children: [
+              int count = int.tryParse(azkar[index].count!) ?? 0;
+              return Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppTheme.black,
+                  border: Border.all(color: AppTheme.primary, width: 2),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      azkar[index].content!,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 10),
+                    if (azkar[index].count!.isNotEmpty)
                       Text(
-                        azkar[index].content!,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        'عدد المرات : ${azkar[index].count!}',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: AppTheme.primary,
+                          fontSize: 14,
+                        ),
                         textAlign: TextAlign.center,
                       ),
-
-                      const SizedBox(height: 10),
-
-                      if (azkar[index].description!.isNotEmpty)
-                        Text(
-                          azkar[index].description!,
-                          style: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: AppTheme.brown, fontSize: 12),
-                          textAlign: TextAlign.center,
-                        ),
-                      const SizedBox(height: 10),
-                      if (azkar[index].count!.isNotEmpty)
+                    const SizedBox(height: 10),
+                    if (azkar[index].count!.isNotEmpty)
                       StatefulBuilder(
                         builder: (context, setItemState) {
                           return InkWell(
@@ -86,7 +77,6 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                                 horizontal: 16,
                                 vertical: 4,
                               ),
-
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   width: 1,
@@ -94,7 +84,6 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                                 ),
                                 borderRadius: BorderRadius.circular(16),
                               ),
-
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -126,20 +115,18 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                           );
                         },
                       ),
-                    ],
-                  ),
-                );
-              }
-
-              return Container(
-                padding: const EdgeInsets.all(16),
-                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppTheme.black,
-                  border: Border.all(color: AppTheme.primary, width: 2),
+                    const SizedBox(height: 10),
+                    if (azkar[index].description!.isNotEmpty)
+                      Text(
+                        azkar[index].description!,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: AppTheme.brown,
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                  ],
                 ),
-                child: Text(azkar[index].content!, textAlign: TextAlign.center),
               );
             },
           );

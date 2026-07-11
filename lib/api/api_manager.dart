@@ -7,6 +7,8 @@ import 'package:islami/models/radio_response/radio.dart';
 import 'package:islami/models/radio_response/radio_response.dart';
 import 'package:islami/models/reciters_response/reciter.dart';
 import 'package:islami/models/reciters_response/reciters_response.dart';
+import 'package:islami/models/tafasir/tafsir.dart';
+import 'package:islami/models/tafasir/tafsir_response.dart';
 
 class ApiManager {
   Future<List<Radio>> getRadioData() async {
@@ -30,6 +32,20 @@ class ApiManager {
       Map<String, dynamic> json = jsonDecode(response.body);
       final recitersResponse = RecitersResponse.fromJson(json);
       return recitersResponse.reciters;
+    } catch (e) {
+      rethrow;
+    }
+  }
+  
+  Future<List<Tafsir>> getTafasirData() async {
+    try {
+      Uri uri = Uri.parse(
+        'https://www.mp3quran.net/api/v3/tafsir?tafsir=9&language=ar',
+      );
+      final response = await http.get(uri);
+      Map<String, dynamic> json = jsonDecode(response.body);
+      final tafasirResponse = TafsirResponse.fromJson(json);
+      return tafasirResponse.tafasir;
     } catch (e) {
       rethrow;
     }

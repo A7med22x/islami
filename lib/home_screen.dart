@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:islami/tabs/radio/mini_player.dart';
 import 'package:islami/widgets/nav_bar_unselected_icons.dart';
 import 'package:islami/widgets/nav_bar_selected_icons.dart';
 import 'package:islami/tabs/hadeth/hadeth_tab.dart';
 import 'package:islami/tabs/quran/quran_tab.dart';
 import 'package:islami/tabs/radio/radio_tab.dart';
-import 'package:islami/tabs/sedha/sebha_tab.dart';
+import 'package:islami/tabs/sebha/sebha_tab.dart';
 import 'package:islami/tabs/time/time_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -56,37 +57,43 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          currentIndex = index;
-          setState(() {});
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: NavBarUnselectedIcons(imageName: 'quran'),
-            activeIcon: NavBarSelectedIcons(imageName: 'quran'),
-            label: 'Quran',
-          ),
-          BottomNavigationBarItem(
-            icon: NavBarUnselectedIcons(imageName: 'hadeth'),
-            activeIcon: NavBarSelectedIcons(imageName: 'hadeth'),
-            label: 'Hadeth',
-          ),
-          BottomNavigationBarItem(
-            icon: NavBarUnselectedIcons(imageName: 'sebha'),
-            activeIcon: NavBarSelectedIcons(imageName: 'sebha'),
-            label: 'Sebha',
-          ),
-          BottomNavigationBarItem(
-            icon: NavBarUnselectedIcons(imageName: 'radio'),
-            activeIcon: NavBarSelectedIcons(imageName: 'radio'),
-            label: 'Radio',
-          ),
-          BottomNavigationBarItem(
-            icon: NavBarUnselectedIcons(imageName: 'time'),
-            activeIcon: NavBarSelectedIcons(imageName: 'time'),
-            label: 'Time',
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const MiniPlayer(),
+          BottomNavigationBar(
+            currentIndex: currentIndex,
+            onTap: (index) {
+              currentIndex = index;
+              setState(() {});
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: NavBarUnselectedIcons(imageName: 'quran'),
+                activeIcon: NavBarSelectedIcons(imageName: 'quran'),
+                label: 'Quran',
+              ),
+              BottomNavigationBarItem(
+                icon: NavBarUnselectedIcons(imageName: 'hadeth'),
+                activeIcon: NavBarSelectedIcons(imageName: 'hadeth'),
+                label: 'Hadeth',
+              ),
+              BottomNavigationBarItem(
+                icon: NavBarUnselectedIcons(imageName: 'sebha'),
+                activeIcon: NavBarSelectedIcons(imageName: 'sebha'),
+                label: 'Sebha',
+              ),
+              BottomNavigationBarItem(
+                icon: NavBarUnselectedIcons(imageName: 'radio'),
+                activeIcon: NavBarSelectedIcons(imageName: 'radio'),
+                label: 'Radio',
+              ),
+              BottomNavigationBarItem(
+                icon: NavBarUnselectedIcons(imageName: 'time'),
+                activeIcon: NavBarSelectedIcons(imageName: 'time'),
+                label: 'Time',
+              ),
+            ],
           ),
         ],
       ),

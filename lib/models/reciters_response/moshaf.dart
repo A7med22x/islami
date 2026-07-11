@@ -36,4 +36,12 @@ class Moshaf {
     'moshaf_type': moshafType,
     'surah_list': surahList,
   };
+
+  List<int> get availableSurahs {
+    if (surahList == null || surahList!.isEmpty) {
+      return [];
+    }
+
+    return surahList!.split(',').map((e) => int.parse(e)).toList();
+  }
 }
