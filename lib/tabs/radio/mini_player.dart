@@ -88,7 +88,7 @@ class MiniPlayer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        onPressed: provider.isRadio
+                        onPressed: (provider.isRadio || provider.isTafsir)
                             ? null
                             : provider.previousSurah,
                         icon: const Icon(Icons.skip_previous, size: 24),
@@ -124,7 +124,9 @@ class MiniPlayer extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: provider.isRadio ? null : provider.nextSurah,
+                        onPressed: (provider.isRadio || provider.isTafsir)
+                            ? null
+                            : provider.nextSurah,
                         icon: const Icon(Icons.skip_next, size: 24),
                         color: AppTheme.primary,
                       ),

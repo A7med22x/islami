@@ -42,7 +42,7 @@ class _TimeTabState extends State<TimeTab> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return LoadingIndicator();
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('something went wrong'));
+                  return Center(child: Text('check your internet connection'));
                 } else {
                   final data = snapshot.data!;
                   Map<String, dynamic> prayerTimes =
